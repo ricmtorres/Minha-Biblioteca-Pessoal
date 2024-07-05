@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <style>
+        body {
+            background-color: {{ cor_preferida }};
+        }
+    </style>
+</head>
+<body>
+    <h1>Dashboard</h1>
+    <h2>Bem-vindo, {{ usuario.nome }}</h2>
+
+   <h2>Meus Livros</h2>
+{% if livros %}
+<ul>
+    {% for livro in livros %}
+    <li>{{ livro.titulo }} - {{ livro.autor }} ({{ livro.ano_publicacao }})</li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>Você ainda não adicionou nenhum livro.</p>
+{% endif %}
+
+<p>Número de livros: {{ livros|length }}</p>
+
+<a href="{% url 'personalizar' %}">Personalizar</a>
+<a href="{% url 'logout' %}">Logout</a>
+<a href="{% url 'adicionar_livro' %}">Adicionar Livros</a>
+</body>
+</html>
